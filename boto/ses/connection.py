@@ -464,3 +464,37 @@ class SESConnection(AWSAuthConnection):
         params = {}
         self._build_list_params(params, identities, 'Identities.member')
         return self._make_request('GetIdentityDkimAttributes', params)
+
+    def list_identities(self, identity_type=None, max_items=None,
+            next_token=None):
+        """
+        Returns a list containing all of the identities (email addresses and
+        domains) for a specific AWS Account, regardless of verification status.
+        """
+        params = {}
+        if identity_type:
+            self._build_list_params(params, identity_type, 'IdentityType.member')
+        if max_items:
+            self._build_list_params(params, max_items, 'MaxItems.member')
+        if next_token:
+            self._build_list_params(params, next_token, 'NextToken.member')
+
+       return self._make_request('ListIdentities', params)
+
+   def delete_identity(self, identity):
+       """
+       Deletes the specified identity (email address or domain) from the list
+       of verified identities.
+       """
+       params = {}
+       self._build_list_params(params, identity, 'Identity.member')
+       return self._make_request('DeleteIdentity', params)
+
+   def verify_email_identity(self, email_address):
+       """
+       Verifies an email address. This action causes a confirmation email
+       message to be sent to the specified address.
+       """
+       params = {}
+       self._build_list_params(params, email_address, 'EmailAddress.member')
+       return self._make_request('VerifyEmailIdentity', params)
