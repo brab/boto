@@ -481,20 +481,20 @@ class SESConnection(AWSAuthConnection):
 
         return self._make_request('ListIdentities', params)
 
-   def delete_identity(self, identity):
-       """
-       Deletes the specified identity (email address or domain) from the list
-       of verified identities.
-       """
-       params = {}
-       self._build_list_params(params, identity, 'Identity.member')
-       return self._make_request('DeleteIdentity', params)
+    def delete_identity(self, identity):
+        """
+        Deletes the specified identity (email address or domain) from the list
+        of verified identities.
+        """
+        params = {}
+        self._build_list_params(params, identity, 'Identity.member')
+        return self._make_request('DeleteIdentity', params)
 
-   def verify_email_identity(self, email_address):
-       """
-       Verifies an email address. This action causes a confirmation email
-       message to be sent to the specified address.
-       """
-       params = {}
-       self._build_list_params(params, email_address, 'EmailAddress.member')
-       return self._make_request('VerifyEmailIdentity', params)
+    def verify_email_identity(self, email_address):
+        """
+        Verifies an email address. This action causes a confirmation email
+        message to be sent to the specified address.
+        """
+        params = {}
+        self._build_list_params(params, email_address, 'EmailAddress.member')
+        return self._make_request('VerifyEmailIdentity', params)
