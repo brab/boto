@@ -473,11 +473,11 @@ class SESConnection(AWSAuthConnection):
         """
         params = {}
         if identity_type:
-            self._build_list_params(params, identity_type, 'IdentityType.member')
+            self._build_list_params(params, identity_type, 'IdentityType')
         if max_items:
-            self._build_list_params(params, max_items, 'MaxItems.member')
+            self._build_list_params(params, max_items, 'MaxItems')
         if next_token:
-            self._build_list_params(params, next_token, 'NextToken.member')
+            self._build_list_params(params, next_token, 'NextToken')
 
         return self._make_request('ListIdentities', params)
 
@@ -487,7 +487,7 @@ class SESConnection(AWSAuthConnection):
         of verified identities.
         """
         params = {}
-        self._build_list_params(params, identity, 'Identity.member')
+        self._build_list_params(params, identity, 'Identity')
         return self._make_request('DeleteIdentity', params)
 
     def verify_email_identity(self, email_address):
@@ -496,5 +496,5 @@ class SESConnection(AWSAuthConnection):
         message to be sent to the specified address.
         """
         params = {}
-        self._build_list_params(params, email_address, 'EmailAddress.member')
+        self._build_list_params(params, email_address, 'EmailAddress')
         return self._make_request('VerifyEmailIdentity', params)
