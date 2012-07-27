@@ -479,7 +479,7 @@ class SESConnection(AWSAuthConnection):
         if next_token:
             self._build_list_params(params, next_token, 'NextToken.member')
 
-       return self._make_request('ListIdentities', params)
+        return self._make_request('ListIdentities', params)
 
    def delete_identity(self, identity):
        """
