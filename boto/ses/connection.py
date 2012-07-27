@@ -384,6 +384,21 @@ class SESConnection(AWSAuthConnection):
             'EmailAddress': email_address,
         })
 
+    def verify_domain_identity(self, domain):
+        """
+        Verifies a domain.
+
+        Returns a TXT record that must be placed in the DNS settings for the
+        domain, in order to complete domain verification.
+
+        :type domain: string
+        :param domain: The domain name.
+
+        """
+        return self._make_request('VerifyDomainIdentity', {
+            'Domain': domain,
+        })
+
     def verify_domain_dkim(self, domain):
         """
         Returns a set of DNS records, or tokens, that must be published in the
