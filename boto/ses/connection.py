@@ -498,3 +498,13 @@ class SESConnection(AWSAuthConnection):
         return self._make_request('VerifyEmailIdentity', {
             'EmailAddress': email_address,
             })
+
+    def get_identity_verification_attributes(self, identities):
+        """
+        Given a list of identities (email addresses and/or domains), returns
+        the verification status and (for domain identities) the verification
+        token for each identity.
+        """
+        params = {}
+        self._build_list_params(params, identities, 'Identities.member')
+        return self._make_request('GetIdentityVerificationAttributes', params)
