@@ -55,7 +55,7 @@ class Element(dict):
 
     def __init__(self, connection=None, element_name=None,
                  stack=None, parent=None, list_marker=('Set',),
-                 item_marker=('member', 'item'),
+                 item_marker=('member', 'item', 'entry',),
                  pythonize_name=False):
         dict.__init__(self)
         self.connection = connection

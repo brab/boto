@@ -107,8 +107,16 @@ class SESConnection(AWSAuthConnection):
             data=urllib.urlencode(params)
         )
         body = response.read()
+
+        # NOTE  for testing
+        #print 'BODY:', body
+
         if response.status == 200:
-            list_markers = ('VerifiedEmailAddresses', 'SendDataPoints')
+            list_markers = (
+                    'VerifiedEmailAddresses',
+                    'SendDataPoints',
+                    'VerificationAttributes',
+                    )
             e = boto.jsonresponse.Element(list_marker=list_markers)
             h = boto.jsonresponse.XmlHandler(e, None)
             h.parse(body)
